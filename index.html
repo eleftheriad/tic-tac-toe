@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts.js" defer></script>
+    <title>tic tac toe</title>
+</head>
+<body>
+    <main id="main-page">
+        <div class="forms" >
+            <form action="" id="player1">
+                <h3>Player 1</h3>
+                <label for="playerOneName">Name</label>
+                <input type="text" id="playerOneName"><br>
+                <label for="playerOneMarkX">X</label>
+                <input type="radio" id="playerOneMarkX" name="mark" value="X">
+                <label for="playerOneMarkO">O</label>
+                <input type="radio" id="playerOneMarkO" name="mark" value="O">
+            </form>
+            <form action="" id="player2">
+                <h3>Player 2</h3>
+                <label for="playerTwoName">Name</label>
+                <input type="text" id="playerTwoName"><br>
+                <label for="playerTwoMarkX">X</label>
+                <input type="radio" id="playerTwoMarkX" name="mark" value="X">
+                <label for="playerTwoMarkO">O</label>
+                <input type="radio" id="playerTwoMarkO" name="mark" value="O">
+            </form>
+            
+        </div>
+        <button id="start-button">Play</button>
+        <div class="game-container">
+            <div class="game">
+                <div class="box" data-id="0"></div>
+                <div class="box" data-id="1"></div>
+                <div class="box" data-id="2"></div>
+                <div class="box" data-id="3"></div>
+                <div class="box" data-id="4"></div>
+                <div class="box" data-id="5"></div>
+                <div class="box" data-id="6"></div>
+                <div class="box" data-id="7"></div>
+                <div class="box" data-id="8"></div>
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>
