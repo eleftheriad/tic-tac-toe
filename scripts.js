@@ -9,10 +9,10 @@ function Game(p1, p2) {
 }
 Game.prototype.gameFlow = function(){
     const boxes = document.querySelectorAll('.box');
-    const ClickedBoxes = [];
-    var isClicked = false;
     if (this.counter===0) {
         boxes.forEach(box => {
+            const winner_node = document.querySelector('h2');
+            winner_node.hidden = true;
             box.textContent = '';
         });
     }
@@ -36,7 +36,7 @@ Game.prototype.gameFlow = function(){
                 this.counter++;
                 console.log('count', this.counter);
                 
-                this.checkForWin(this.scores);
+                this.checkForWin(this.scores, currentPlayer);
             }
             
         });
@@ -59,13 +59,16 @@ Game.prototype.checkForWin = function(scores, currentPlayer){
     
 };
 Game.prototype.gameOver = function(currentPlayer) {
-    console.log("win");
+    const winner_node = document.querySelector('h2');
+    winner_node.textContent = `${currentPlayer.name} WINS!`;
+    winner_node.hidden = false;
     const boxes = document.querySelectorAll('.box');
     const game = document.querySelector('.game');
     boxes.forEach(box => {
         var boxClone = box.cloneNode(true);
         box.parentNode.replaceChild(boxClone, box);
     })
+
 }
 function Player(name, mark) {
     this.name = name;
@@ -77,18 +80,10 @@ function Player(name, mark) {
 const startButton = document.querySelector("#start-button");
 startButton.addEventListener("click",()=>{
     const name1 = document.querySelector('#playerOneName').value;
-    let mark1;
-    if(document.querySelector('#playerOneMarkX').checked == true){
-        mark1 = 'X';
-    }else mark1='O';
     const name2 = document.querySelector('#playerTwoName').value;
-    let mark2;
-    if(document.querySelector('#playerTwoMarkX').checked == true){
-        mark2 = 'X';
-    }else mark2='O';
-
-    const player1 = new Player(name1, mark1);
-    const player2 = new Player(name2, mark2);
+    startButton.textContent = "Play Again"
+    const player1 = new Player(name1, 'X');
+    const player2 = new Player(name2, 'O');
     const game = new Game(player1, player2);
     game.gameFlow();
 });
