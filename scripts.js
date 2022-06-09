@@ -32,22 +32,21 @@ Game.prototype.gameFlow = function(){
 Game.prototype.checkForWin = function(scores, currentPlayer){
     for (let i = 0; i < scores.length; i++) {
         if ((scores[i] === scores[i+1]) && (scores[i] === scores[i+2]) && (i%3===0)){
-            console.log("win");
+
+            this.gameOver(currentPlayer);
         }else if((scores[i] === scores[i+3]) && (scores[i] === scores[i+6]) && (i<=3)){
-            console.log("win");
+            this.gameOver(currentPlayer);
 
         }
     }
     if (((scores[0] === scores[4]) && (scores[0] === scores[8])) || ((scores[2] === scores[4]) && (scores[2] === scores[6]))){
-        console.log("win");
+        
+        this.gameOver(currentPlayer);
     }
-    this.gameOver(currentPlayer);
+    
 };
 Game.prototype.gameOver = function(currentPlayer) {
-    const boxes = document.querySelectorAll('.box');
-    boxes.forEach(box => {
-        box.removeEventListener("click");
-    });
+    console.log("win");
 }
 function Player(name, mark) {
     this.name = name;
