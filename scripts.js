@@ -5,27 +5,40 @@ function Game(p1, p2) {
     this.scores = new Array(-1, -2, -3, -4, -5, -6, -7, -8, -9);
     this.counter = 0;
     
+    
 }
 Game.prototype.gameFlow = function(){
     const boxes = document.querySelectorAll('.box');
+    const ClickedBoxes = [];
+    var isClicked = false;
+    if (this.counter===0) {
+        boxes.forEach(box => {
+            box.textContent = '';
+        });
+    }
     boxes.forEach(box => {
         box.addEventListener("click",() => {
             const id = box.getAttribute("data-id");
-            let currentPlayer;
-            if (this.counter%2 == 0){
-                box.textContent = "X";
-                this.scores[id] = 1;
+            if (this.scores[id] == 1 || this.scores[id] == 0) {
+                console.log(this.scores[id]);
 
-                currentPlayer = this.p1;
-            }else {
-                box.textContent = "O"
-                this.scores[id] = 0;  
-                currentPlayer = this.p2;
+            }else{
+                let currentPlayer;
+                if (this.counter%2 == 0){
+                    box.textContent = "X";
+                    this.scores[id] = 1;
+                    currentPlayer = this.p1;
+                }else {
+                    box.textContent = "O"
+                    this.scores[id] = 0;  
+                    currentPlayer = this.p2;
+                }
+                this.counter++;
+                console.log('count', this.counter);
+                
+                this.checkForWin(this.scores);
             }
-            this.counter++;
-            console.log(this.counter);
             
-            this.checkForWin(this.scores);
         });
     });
 };
@@ -47,6 +60,12 @@ Game.prototype.checkForWin = function(scores, currentPlayer){
 };
 Game.prototype.gameOver = function(currentPlayer) {
     console.log("win");
+    const boxes = document.querySelectorAll('.box');
+    const game = document.querySelector('.game');
+    boxes.forEach(box => {
+        var boxClone = box.cloneNode(true);
+        box.parentNode.replaceChild(boxClone, box);
+    })
 }
 function Player(name, mark) {
     this.name = name;
